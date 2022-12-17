@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const resourceListContext = createContext({});
 
@@ -7,29 +7,34 @@ const ResourceListProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const url =
-    "https://media-content.ccbp.in/website/react-assignment/resources.json";
+  useEffect(() => {
+    const url =
+      "https://media-content.ccbp.in/website/react-assignment/resources.json";
 
-  const fetchResourceList = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch(url);
-      const json = await response.json();
-      console.log("Fetched data",json);
-      setResourceList(json);
-      setLoading(false);
-    } catch (error) {
-      console.log("error", error);
-      setLoading(false);
-      setError("Something went Wrong! Please try after sometime");
-    }
-  };
+    const fetchResourceList = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setResourceList(json);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        setError("Something went Wrong! Please try after sometime");
+      }
+    };
+    fetchResourceList();
+  }, []);
 
-  console.log(resourceList)
 
   return (
     <resourceListContext.Provider
-      value={{ resourceList, loading, error, fetchResourceList }}
+      value={{
+        resourceList,
+        loading,
+        error,
+        setResourceList,
+      }}
     >
       {children}
     </resourceListContext.Provider>

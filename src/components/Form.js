@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useResourceListContext } from "../contexts/resourceList-context";
 
 const Form = () => {
   const [title, setTitle] = useState("");
@@ -7,6 +9,7 @@ const Form = () => {
   const [category, setCategory] = useState("");
   const [tag, setTag] = useState("");
   const [description, setDescription] = useState("");
+  const { setResourceList } = useResourceListContext();
 
   let buttonDisabled = !(
     title &&
@@ -17,7 +20,39 @@ const Form = () => {
     description
   );
 
-  const handleCreateResourceItem = () => {};
+  const handleCreateResourceItem = (e) => {
+    e.preventDefault();
+    fetch(
+      "https://media-content.ccbp.in/website/react-assignment/add_resource.json"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("this is data", data);
+        setResourceList((prev) => [
+          ...prev,
+          {
+            title,
+            icon_url: icon,
+            link,
+            description,
+            category,
+            tag,
+            id: Math.random(),
+          },
+        ]);
+        setTag("");
+        setTitle("");
+        setCategory("");
+        setDescription("");
+        setLink("");
+        setIcon("");
+        toast.success("Item added successfully!");
+      })
+      .catch((error) => {
+        console.log("this is error", error);
+        toast.error("Failed to add the item!");
+      });
+  };
 
   return (
     <form className="w-fit h-auto relative top-[45px]  mx-auto" action="">
@@ -82,10 +117,11 @@ const Form = () => {
       <div className="flex justify-center">
         <button
           disabled={buttonDisabled}
+          type="submit"
           className={`bg-[#0B69FF] w-[107px] h-[40px] rounded-[4px] text-[white] text-center ${
             buttonDisabled && "opacity-[0.5] cursor-not-allowed"
           }`}
-          onClick={() => handleCreateResourceItem}
+          onClick={(e) => handleCreateResourceItem(e)}
         >
           CREATE
         </button>

@@ -6,8 +6,6 @@ const ResourceCard = ({
   icon,
   link,
   category,
-  tag,
-  id,
 }) => {
   return (
     <div className="bg-[#FFFFFF] box-border w-full h-[192px] rounded-[4px] border border-solid border-[#D7DFE9]">

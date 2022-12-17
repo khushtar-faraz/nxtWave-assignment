@@ -5,7 +5,9 @@ const Search = () => {
   const [input, setInput] = useState("");
   const { dispatchOfFilters } = useFilters();
 
-//TODO: IMPLEMENT DEBOUNCING
+  //TODO: IMPLEMENT DEBOUNCING
+  //TODO: FIX SEARCH BUG
+
   return (
     <form className="flex bg-[#FFFFFF] items-center mt-[32px] w-[648px] h-[40px] border border-solid border-[#D7DFE9] rounded-[3px] relative left-[100px]">
       <svg

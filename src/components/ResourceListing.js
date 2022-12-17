@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useFilters } from "../contexts/filters-context";
 import { useResourceListContext } from "../contexts/resourceList-context";
 import Pagination from "./Pagination";
@@ -7,13 +7,10 @@ import ResourceCard from "./ResourceCard";
 const ResourceListing = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
-  const { loading, error, fetchResourceList } = useResourceListContext();
+  const { loading, error } = useResourceListContext();
   const { resourceToBeDisplayed } = useFilters();
 
   // TODO: implement styling for loading and error states and no result found state
-  useEffect(() => {
-    fetchResourceList();
-  }, []);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
