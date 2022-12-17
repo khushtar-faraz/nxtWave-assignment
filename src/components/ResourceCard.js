@@ -10,7 +10,7 @@ const ResourceCard = ({
   id,
 }) => {
   return (
-    <div className="bg-[#FFFFFF] box-border w-[360px] h-[192px] rounded-[4px] border border-solid border-[#D7DFE9]">
+    <div className="bg-[#FFFFFF] box-border w-full h-[192px] rounded-[4px] border border-solid border-[#D7DFE9]">
       <div className="m-[24px]">
         <div className="flex">
           <div className="w-[44px] h-[44px] rounded-[4px] border border-solid border-[#D7DFE9]">

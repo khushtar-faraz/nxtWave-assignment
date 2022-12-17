@@ -7,7 +7,7 @@ const Search = () => {
 
 //TODO: IMPLEMENT DEBOUNCING
   return (
-    <form className="flex bg-[#FFFFFF] items-center mt-[32px] w-[648px] h-[40px] border border-solid border-[#D7DFE9] rounded-[3px] relative left-[149px]">
+    <form className="flex bg-[#FFFFFF] items-center mt-[32px] w-[648px] h-[40px] border border-solid border-[#D7DFE9] rounded-[3px] relative left-[100px]">
       <svg
         className="absolute left-[18px]"
         width="12"

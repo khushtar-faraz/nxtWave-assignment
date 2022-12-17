@@ -9,6 +9,8 @@ const FilterTabs = () => {
     setToggleState(index);
   };
 
+  // TODO: FIX PAGINATION BUG
+
   return (
     <div className="w-[600px] h-[40px] mt-[46px] mx-auto">
       <div className="flex justify-evenly box-border w-full h-full">
