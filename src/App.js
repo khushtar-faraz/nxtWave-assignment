@@ -1,19 +1,24 @@
 import "./App.css";
-import FilterTabs from "./components/FilterTabs";
-import Header from "./components/Header";
-import ResourceListing from "./components/ResourceListing";
-import Search from "./components/Search";
+import { Routes, Route } from "react-router-dom";
+import ResourceDetailsScreen from "./screens/ResourceDetailsScreen";
+import AddItemScreen from "./screens/AddItemScreen";
 
 function App() {
   return (
-    <div className="w-[1440px] h-auto bg-[#fbfbfb]">
-      <Header />
-      <main>
-        <FilterTabs />
-        <Search />
-        <ResourceListing /> 
-      </main>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <ResourceDetailsScreen/>
+        }
+      />
+      <Route
+        path="/addItem"
+        element={
+         <AddItemScreen/>
+        }
+      />
+    </Routes>
   );
 }
 
