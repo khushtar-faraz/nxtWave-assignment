@@ -1,40 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useFilters } from "../contexts/filters-context";
+import { useResourceListContext } from "../contexts/resourceList-context";
 import Pagination from "./Pagination";
 import ResourceCard from "./ResourceCard";
 
 const ResourceListing = () => {
-  const [resourceList, setResourceList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6);
+  const { loading, error, fetchResourceList } = useResourceListContext();
+  const { resourceToBeDisplayed } = useFilters();
 
+  // TODO: implement styling for loading and error states and no result found state
   useEffect(() => {
-    const url =
-      "https://media-content.ccbp.in/website/react-assignment/resources.json";
-
-    const fetchResourceList = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(url);
-        const json = await response.json();
-        console.log(json);
-        setResourceList(json);
-        setLoading(false);
-      } catch (error) {
-        console.log("error", error);
-        setLoading(false);
-        setError("Something went Wrong! Please try after sometime");
-      }
-    };
-
     fetchResourceList();
   }, []);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = resourceList.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = resourceToBeDisplayed.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
 
   //change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -59,7 +46,7 @@ const ResourceListing = () => {
       </div>
       <Pagination
         postsPerPage={postsPerPage}
-        totalPosts={resourceList.length}
+        totalPosts={resourceToBeDisplayed.length}
         paginate={paginate}
       />
     </>

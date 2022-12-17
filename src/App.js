@@ -12,8 +12,6 @@ function App() {
         <FilterTabs />
         <Search />
         <ResourceListing /> 
-            {/* ResourceCard */}
-            {/* Pagination */}
       </main>
     </div>
   );

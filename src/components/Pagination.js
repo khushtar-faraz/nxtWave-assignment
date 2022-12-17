@@ -13,21 +13,26 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     pageNumbers.push(i);
   }
 
+  // TODO: FIX THE BUG
+
   return (
     <nav className="w-full mx-auto">
       <ul className="flex justify-center">
         {pageNumbers.map((number) => (
           <li key={number} className="p-4">
-            <a
+            <span
               onClick={() => {
                 paginate(number);
                 updateActive(number);
               }}
-              href="!#"
-              className={toggleState===number?"text-[black] text-[20px]":"text-[#0B69FF] text-[20px]"}
+              className={
+                toggleState === number
+                  ? "text-[black] text-[20px] cursor-pointer"
+                  : "text-[#0B69FF] text-[20px] cursor-pointer"
+              }
             >
               {number}
-            </a>
+            </span>
           </li>
         ))}
       </ul>

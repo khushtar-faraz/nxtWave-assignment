@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useFilters } from "../contexts/filters-context";
 
 const Search = () => {
   const [input, setInput] = useState("");
+  const { dispatchOfFilters } = useFilters();
 
-//   TODO: Implement search filter
-
+//TODO: IMPLEMENT DEBOUNCING
   return (
     <form className="flex bg-[#FFFFFF] items-center mt-[32px] w-[648px] h-[40px] border border-solid border-[#D7DFE9] rounded-[3px] relative left-[149px]">
       <svg
@@ -25,7 +26,13 @@ const Search = () => {
       <input
         type="text"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => {
+          setInput(e.target.value);
+          dispatchOfFilters({
+            type: "FILTER_BY_SEARCH",
+            payload: input,
+          });
+        }}
         placeholder="Search"
         className="flex-grow outline-none bg-transparent pl-5 text-sm text-gray-600 placeholder-gray-400 text-center"
       />
