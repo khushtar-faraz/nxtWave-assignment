@@ -5,7 +5,7 @@ import Form from "./Form";
 const FormContainer = () => {
 
   return (
-    <div className="w-full flex-[70%] h-auto bg-[#fbfbfb]">
+    <div className="w-full flex-[72%] h-auto bg-[#fbfbfb]">
       <Link to="/">
         <svg
           className="relative top-[22px] left-[48px]"

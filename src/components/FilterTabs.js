@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { useFilters } from "../contexts/filters-context";
+import { usePaginationContext } from "../contexts/pagination-context";
 
 const FilterTabs = () => {
   const [toggleState, setToggleState] = useState(1);
   const { dispatchOfFilters } = useFilters();
+  const { paginate, setToggleState: setPageNumberColorToggle } =
+    usePaginationContext();
 
   const toggleTab = (index) => {
     setToggleState(index);
   };
 
-  // TODO: FIX PAGINATION BUG
-
   return (
-    <div className="w-[600px] h-[40px] mt-[46px] mx-auto">
+    <div className="mt-4 mx-2 sm:mx-auto sm:mt-[46px] sm:w-[300px] md:w-[450px] lg:w-[600px]">
       <div className="flex justify-evenly box-border w-full h-full">
         <button
           className={
@@ -22,6 +23,8 @@ const FilterTabs = () => {
           }
           onClick={() => {
             toggleTab(1);
+            paginate(1);
+            setPageNumberColorToggle(1);
             dispatchOfFilters({ type: "CLEAR_ALL" });
           }}
         >
@@ -35,6 +38,8 @@ const FilterTabs = () => {
           }
           onClick={() => {
             toggleTab(2);
+            paginate(1);
+            setPageNumberColorToggle(1);
             dispatchOfFilters({
               type: "FILTER_BY_CATEGORY",
               payload: "request",
@@ -51,6 +56,8 @@ const FilterTabs = () => {
           }
           onClick={() => {
             toggleTab(3);
+            paginate(1);
+            setPageNumberColorToggle(1);
             dispatchOfFilters({ type: "FILTER_BY_CATEGORY", payload: "user" });
           }}
         >

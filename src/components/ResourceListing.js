@@ -1,31 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFilters } from "../contexts/filters-context";
+import { usePaginationContext } from "../contexts/pagination-context";
 import { useResourceListContext } from "../contexts/resourceList-context";
 import Pagination from "./Pagination";
 import ResourceCard from "./ResourceCard";
 
 const ResourceListing = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(6);
   const { loading, error } = useResourceListContext();
   const { resourceToBeDisplayed } = useFilters();
-
-  // TODO: implement styling for loading and error states and no result found state
-
-  // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = resourceToBeDisplayed.slice(
-    indexOfFirstPost,
-    indexOfLastPost
-  );
-
-  //change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const { postsPerPage, currentPosts } = usePaginationContext();
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-[1144px] gap-x-[20px] gap-y-[20px] mt-[32px] relative left-[100px]">
+      <div className="grid justify-center items-center grid-cols-1 mt-4 md:grid-cols-2 md:gap-x-[5px] md:gap-y-[5px] lg:grid-cols-3 lg:gap-x-[10px] lg:gap-y-[10px] xl:w-[1144px] xl:gap-x-[20px] xl:gap-y-[20px] xl:mt-[32px] xl:relative xl:left-[100px]">
         {loading && <div>Loading...</div>}
         {error && <div>{error}</div>}
         {currentPosts.map((resource) => (
@@ -44,7 +31,6 @@ const ResourceListing = () => {
       <Pagination
         postsPerPage={postsPerPage}
         totalPosts={resourceToBeDisplayed.length}
-        paginate={paginate}
       />
     </>
   );

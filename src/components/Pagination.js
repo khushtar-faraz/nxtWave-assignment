@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { usePaginationContext } from "../contexts/pagination-context";
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
-  const [toggleState, setToggleState] = useState(1);
+const Pagination = ({ postsPerPage, totalPosts }) => {
+  const { paginate, toggleState, setToggleState } = usePaginationContext();
 
   const pageNumbers = [];
 
@@ -12,8 +13,6 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i);
   }
-
-  // TODO: FIX THE BUG
 
   return (
     <nav className="w-full mx-auto">
