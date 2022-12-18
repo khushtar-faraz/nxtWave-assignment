@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/nxtWave-assignment/static/css/main.06902d42.css",
+    "main.js": "/nxtWave-assignment/static/js/main.20eddcc8.js",
+    "index.html": "/nxtWave-assignment/index.html",
+    "main.06902d42.css.map": "/nxtWave-assignment/static/css/main.06902d42.css.map",
+    "main.20eddcc8.js.map": "/nxtWave-assignment/static/js/main.20eddcc8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.06902d42.css",
+    "static/js/main.20eddcc8.js"
+  ]
+}
